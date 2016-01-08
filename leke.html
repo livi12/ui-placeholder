@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ui-placeholder</title>
+	<link rel="stylesheet" type="text/css" href="global.css">
+	<style type="text/css" media="screen">
+		.wrap{
+			position:relative;
+		}
+		.parents{
+			position:absolute;
+			top:200px;
+			left: 300px;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<p>我是文本一</p>
+		<p>我是文本二</p>
+		<p>我是文本三</p>
+		<div class="parents">
+			<input type="text" placeholder="文本框">
+		</div>
+	</div>
+	<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.11.1-rc2/jquery.min.js"></script>
+	<script type="text/javascript" src="ui-placeholder1.js"></script>
+	<script type="text/javascript">
+	$('input').placeholder({
+		bLabelMode: true,
+        bLabelAcross: true,
+        oLabelStyle: {
+            cursor: 'text',
+            lineHeight:'1.6',
+            color:'#f0f'
+        }
+	})
+	</script>
+</body>
+</html>
