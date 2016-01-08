@@ -1,7 +1,5 @@
 #乐课ui-placeholder的插件的使用
 
-[修改后的示例](http://192.168.20.21/static/widget/ui-placeholder/)
-[乐课的示例在360ie模式下查看](http://192.168.20.21/static/widget/ui-placeholder/leke.html)
 
 ##原理
 该插件通过扩展jquery的方法，添加了placeholder方法，该方法可以传四个值，下面对其传值进行解释说明。
@@ -79,79 +77,3 @@ placeholder 插件提供两种方法仿写placeholder属性，一种是value值�
     fontSize:element.css('fontSize')
 ```
 
-
-### 说明：
-ui-placeholder 对乐课网中的placeholder.js插件中存在的问题进行了修正。具体修正代码如下
-
-**修改父元素的position属性**
-乐课中的代码：
-
-```javascript
- 	// 存储，因为有时会清除placeholder属性
-    element.data('placeholder', myPlaceholder).parent().css('position','relative');
-
-```
-修正后的代码：
-
-```javascript
- 	// 存储，因为有时会清除placeholder属性
-    element.data('placeholder', myPlaceholder).parent();
-    /*如果父类的position属性是static，则该为relative，否则不更改position 属性*/
-    if(element.parent().css('position')=='static'){
-        element.parent().css('position','relative')
-    }
-
-```
-
-#####如果添加placeholder的元素没有id，给该元素添加id,改为时间戳，去重
-乐课中的代码：
-
-```javascript
- 	if (!idElement) {
-        idElement = 'placeholder' + Math.random();
-        element.attr('id', idElement);
-    }
-
-```
-修正后的代码：
-
-```javascript
- 	if (!idElement) {
-        /*将随机数改为时间戳，随机数可能出现相同的值*/
-       // idElement = 'placeholder' + Math.random();
-        idElement = 'placeholder' +(new Date()).valueOf();
-
-        element.attr('id', idElement);
-    }
-```
-
-修改创建label标签时，设置默认样式的属性值，更改了`lineHeight`的值，增加了`fontSize`的值
-乐课中的代码：
-
-```javascript
- 	position: 'absolute',
-    left: element.position().left,
-    top: element.position().top,
-    color: 'graytext',
-    cursor: 'text',
-    marginLeft: element.css('marginLeft'),
-    marginTop: element.css('marginTop'),
-    paddingLeft: element.css('paddingLeft'),
-    paddingTop: element.css('paddingTop'),
-    lineHeight: '1.3'
-```
-修正后的代码：
-
-```javascript
- 	position: 'absolute',
-    left: element.position().left,
-    top: element.position().top,
-    color: 'graytext',
-    cursor: 'text',
-    marginLeft: element.css('marginLeft'),
-    marginTop: element.css('marginTop'),
-    paddingLeft: element.css('paddingLeft'),
-    paddingTop: element.css('paddingTop'),
-    lineHeight:element.css('lineHeight'),
-    fontSize:element.css('fontSize')
-```
